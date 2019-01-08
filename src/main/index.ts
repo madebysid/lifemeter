@@ -13,7 +13,7 @@ export default class MainProcess {
     this.createTray();
   }
 
-  createTray = () => {
-    this.tray = getTray();
+  createTray = async () => {
+    this.tray = await getTray();
   }
 }
