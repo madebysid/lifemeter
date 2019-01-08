@@ -24,10 +24,6 @@ export const getTray = () : Tray => {
       icon: getProgressIcon(ProgressType.year)
     },
     {
-      label: `Decade: ${getProgressValue(ProgressType.decade)}%`,
-      icon: getProgressIcon(ProgressType.decade)
-    },
-    {
       label: `Lifetime: ${getProgressValue(ProgressType.lifetime)}%`,
       icon: getProgressIcon(ProgressType.lifetime)
     },
