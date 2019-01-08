@@ -1,6 +1,6 @@
 import { app, Tray } from "electron";
 
-import { getTray } from "./tray";
+import { createTray } from "./tray";
 
 export default class MainProcess {
   private tray: Tray;
@@ -10,10 +10,6 @@ export default class MainProcess {
   }
 
   onAppReady = () => {
-    this.createTray();
-  }
-
-  createTray = async () => {
-    this.tray = await getTray();
+    createTray();
   }
 }

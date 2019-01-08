@@ -10,16 +10,21 @@ import { getAppIcon } from "./app";
 import { getItem, setItem } from "./storage";
 import { getProgressValue, getProgressIcon, ProgressType } from "./progress";
 
-const setActive = (type: ProgressType) => {
+let tray: Tray;
+
+const setActive = async (type: ProgressType) => {
   setItem("active", type);
+  const contextMenu = await getContextMenu();
+  const title: string = contextMenu.getMenuItemById(String(type)).label;
+
+  tray.setTitle(title);
 }
 
-export const getTray = async () : Promise<Tray> => {
-  const icon: NativeImage = getAppIcon();
-  const tray: Tray = new Tray(icon);
+const getContextMenu = async (): Promise<Menu> => {
   const activeItem = await getItem("active");
   const template: MenuItemConstructorOptions[] = [
     {
+      id: String(ProgressType.day),
       label: `Day: ${getProgressValue(ProgressType.day)}%`,
       icon: getProgressIcon(ProgressType.day),
       type: "radio",
@@ -27,6 +32,7 @@ export const getTray = async () : Promise<Tray> => {
       checked: activeItem === ProgressType.day
     },
     {
+      id: String(ProgressType.week),
       label: `Week: ${getProgressValue(ProgressType.week)}%`,
       icon: getProgressIcon(ProgressType.week),
       type: "radio",
@@ -34,6 +40,7 @@ export const getTray = async () : Promise<Tray> => {
       checked: activeItem === ProgressType.week
     },
     {
+      id: String(ProgressType.month),
       label: `Month: ${getProgressValue(ProgressType.month)}%`,
       icon: getProgressIcon(ProgressType.month),
       type: "radio",
@@ -41,6 +48,7 @@ export const getTray = async () : Promise<Tray> => {
       checked: activeItem === ProgressType.month
     },
     {
+      id: String(ProgressType.year),
       label: `Year: ${getProgressValue(ProgressType.year)}%`,
       icon: getProgressIcon(ProgressType.year),
       type: "radio",
@@ -48,6 +56,7 @@ export const getTray = async () : Promise<Tray> => {
       checked: activeItem === ProgressType.year
     },
     {
+      id: String(ProgressType.lifetime),
       label: `Lifetime: ${getProgressValue(ProgressType.lifetime)}%`,
       icon: getProgressIcon(ProgressType.lifetime),
       type: "radio",
@@ -56,16 +65,18 @@ export const getTray = async () : Promise<Tray> => {
     },
     { type: "separator" },
     { label: "Quit", click: () => app.quit() }
-  ]
-  const contextMenu: Menu = Menu.buildFromTemplate(template);
-  let title: string = "";
+  ];
 
-  for (const item of template) {
-    if (item.checked) {
-      title = item.label;
-      break;
-    }
-  }
+  return Menu.buildFromTemplate(template);
+}
+
+export const createTray = async () : Promise<Tray> => {
+  const icon: NativeImage = getAppIcon();
+  tray = new Tray(icon);
+
+  const contextMenu = await getContextMenu();
+  const activeItem: string | number = await getItem("active");
+  const title: string = contextMenu.getMenuItemById(String(activeItem)).label;
 
   tray.setTitle(title);
   tray.setContextMenu(contextMenu);
