@@ -21,6 +21,7 @@ trap "kill -9 $SPIN_PID" `seq 0 15`
 
 tsc
 cp src/index.html dist
+cp -r src/assets dist
 
 echo -en "\010\010\010\010\010\010\010\010\010"
 echo "✔ Finished"
