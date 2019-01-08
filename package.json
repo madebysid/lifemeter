@@ -2,18 +2,21 @@
   "name": "lifemeter",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "main/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/madebysid/lifemeter.git"
   },
   "author": "Siddhant Sinha",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/madebysid/lifemeter/issues"
+  "homepage": "https://github.com/madebysid/lifemeter#readme",
+  "scripts": {
+    "start": "./scripts/start.sh",
+    "open": "./scripts/open.sh"
   },
-  "homepage": "https://github.com/madebysid/lifemeter#readme"
+  "devDependencies": {
+    "chokidar-cli": "^1.2.1",
+    "electron": "4.0.1",
+    "typescript": "3.2.2"
+  }
 }
