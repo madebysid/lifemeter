@@ -70,7 +70,7 @@ const getContextMenu = async (): Promise<Menu> => {
   return Menu.buildFromTemplate(template);
 }
 
-export const createTray = async () : Promise<Tray> => {
+export const createTray = async () => {
   const icon: NativeImage = getAppIcon();
   tray = new Tray(icon);
 
@@ -81,5 +81,8 @@ export const createTray = async () : Promise<Tray> => {
   tray.setTitle(title);
   tray.setContextMenu(contextMenu);
 
-  return tray;
+  setTimeout(() => {
+    tray.destroy();
+    createTray();
+  }, 10000)
 }
