@@ -4,12 +4,8 @@ import { app } from "electron";
 const FILE = `${app.getPath("userData")}/preferences.json`;
 
 const getContent = async (): Promise<object> => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     readFile(FILE, { encoding: "utf8" }, (err, data) => {
-      if (err) {
-        return reject({});
-      }
-
       let content: object;
 
       try {
@@ -23,12 +19,12 @@ const getContent = async (): Promise<object> => {
   });
 }
 
-export const setItem = async (key: string, value: string | number): Promise<string|number> => {
+export const setItem = async (key: string, value: any): Promise<any> => {
   let content: object = await getContent();
   content[key] = value;
 
   return new Promise((resolve, reject) => {
-    return writeFile(FILE, JSON.stringify(content), { encoding: "utf8" }, (err) => {
+    return writeFile(FILE, JSON.stringify(content), (err) => {
       if (err) {
         return reject(err);
       }
@@ -38,7 +34,7 @@ export const setItem = async (key: string, value: string | number): Promise<stri
   })
 }
 
-export const getItem = async (key: string): Promise<string | number> => {
+export const getItem = async (key: string): Promise<any> => {
   let content: object = await getContent();
   return content[key];
 };
