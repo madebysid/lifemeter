@@ -14,14 +14,22 @@ spin()
   done
 }
 
+# Start a progress spinner
 clear
 spin &
 SPIN_PID=$!
 trap "kill -9 $SPIN_PID" `seq 0 15`
 
+# Compile TypeScript
 tsc
-cp src/index.html build
+
+# Copy additional resources
 cp -r src/assets build
 
+# Generate the package.json file for the app
+cp app.json build
+mv build/app.json build/package.json
+
+# All done
 clear
 echo "✔ Finished"
