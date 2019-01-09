@@ -1,0 +1,10 @@
+{
+  "name": "lifemeter",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Siddhant Sinha",
+  "dependencies": {
+    "@types/luxon": "1.4.1",
+    "luxon": "1.9.0"
+  }
+}
