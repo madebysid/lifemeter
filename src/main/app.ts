@@ -1,7 +1,14 @@
+import * as path from "path";
 import { nativeImage, NativeImage } from "electron";
 
 export const getAppIcon = () : NativeImage => {
-  const icon: NativeImage = nativeImage.createFromPath("./build/assets/icon.png");
+  const iconPath = path.resolve(
+    __dirname,
+    "../assets/iconTemplate.png"
+  )
+  let icon: NativeImage = nativeImage.createFromPath(iconPath);
+  icon = icon.resize({ height: 20 });
+  icon.setTemplateImage(true);
 
-  return icon.resize({ height: 20 });
+  return icon;
 }

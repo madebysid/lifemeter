@@ -1,3 +1,4 @@
+import * as path from "path";
 import { nativeImage, NativeImage } from "electron";
 import { DateTime, Interval } from "luxon";
 
@@ -59,9 +60,10 @@ export const getProgressValue = (type: ProgressType): number => {
 };
 
 export const getProgressIcon = (type: ProgressType): NativeImage => {
-  const icon: NativeImage = nativeImage.createFromPath(
-    `./build/assets/progress-${Math.floor(getProgressValue(type) / 10)}0.png`
-  );
+  const iconPath = path.resolve(__dirname, `../assets/progress-${Math.floor(getProgressValue(type) / 10)}0-Template.png`);
+  let icon: NativeImage = nativeImage.createFromPath(iconPath);
+  icon = icon.resize({ height: 16 });
+  icon.setTemplateImage(true);
 
-  return icon.resize({ height: 16 });
+  return icon;
 };
