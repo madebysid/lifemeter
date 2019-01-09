@@ -21,4 +21,4 @@ The codebase is tiny, just start at `src/main/index.ts`, and you should immediat
 
 ### Credits
 
-Thank you to [Blaise Sewell](https://thenounproject.com/blaisetsewell/) on the Noun Project for the [hourglass](https://thenounproject.com/search/?q=hourglass&i=188244) icon
+Thank you [Blaise Sewell](https://thenounproject.com/blaisetsewell/) (The Noun Project) for the [hourglass](https://thenounproject.com/search/?q=hourglass&i=188244) icon
