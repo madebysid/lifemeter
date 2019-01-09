@@ -2,7 +2,7 @@
 
 An app that shows you how much time you have left.
 
-![Preview](https://user-images.githubusercontent.com/7689783/50865197-ecce0600-13a4-11e9-8242-c0230dd055cb.png)
+![Preview](https://user-images.githubusercontent.com/7689783/50907770-74a92400-1428-11e9-8b8d-9b9c6507e357.png)
 
 I built this app for myself. I don't plan on distributing it, but if you want to use it, reach out to `me@madebysid.com`, and I'll send it to you.
 
