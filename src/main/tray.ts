@@ -10,6 +10,8 @@ import { getAppIcon } from "./app";
 import { getItem, setItem } from "./storage";
 import { getProgressValue, getProgressIcon, ProgressType } from "./progress";
 
+import { isDev } from "./utils";
+
 let tray: Tray;
 
 const getContextMenu = (activeItem: ProgressType): Menu => {
@@ -57,6 +59,11 @@ const getContextMenu = (activeItem: ProgressType): Menu => {
     { type: "separator" },
     { label: "Quit", click: () => app.quit() }
   ];
+
+  if (isDev()) {
+    template.push({ type: "separator" });
+    template.push({ label: "Reload", click: () => app.relaunch() });
+  }
 
   return Menu.buildFromTemplate(template);
 }
