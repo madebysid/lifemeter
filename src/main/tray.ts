@@ -12,16 +12,7 @@ import { getProgressValue, getProgressIcon, ProgressType } from "./progress";
 
 let tray: Tray;
 
-const setActive = async (type: ProgressType) => {
-  setItem("active", type);
-  const contextMenu = await getContextMenu();
-  const title: string = contextMenu.getMenuItemById(String(type)).label;
-
-  tray.setTitle(title);
-}
-
-const getContextMenu = async (): Promise<Menu> => {
-  const activeItem = await getItem("active");
+const getContextMenu = (activeItem: ProgressType): Menu => {
   const template: MenuItemConstructorOptions[] = [
     {
       id: String(ProgressType.day),
@@ -70,19 +61,30 @@ const getContextMenu = async (): Promise<Menu> => {
   return Menu.buildFromTemplate(template);
 }
 
-export const createTray = async () => {
-  const icon: NativeImage = getAppIcon();
-  tray = new Tray(icon);
+const setActive = async (type: ProgressType) => {
+  await setItem("active", type);
+  updateTray();
+};
 
-  const contextMenu = await getContextMenu();
-  const activeItem: string | number = await getItem("active");
+const updateTray = async () => {
+  const activeItem: ProgressType = (await getItem("active")) || ProgressType.day;
+  const contextMenu = getContextMenu(activeItem);
   const title: string = contextMenu.getMenuItemById(String(activeItem)).label;
 
   tray.setTitle(title);
   tray.setContextMenu(contextMenu);
 
   setTimeout(() => {
+    updateTray();
+  }, 10000);
+}
+
+export const createTray = async () => {
+  if (tray) {
     tray.destroy();
-    createTray();
-  }, 10000)
+  }
+
+  const icon: NativeImage = getAppIcon();
+  tray = new Tray(icon);
+  updateTray();
 }
