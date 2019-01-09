@@ -19,3 +19,6 @@ You'd ideally need both these commands running on two terminal tabs to work effi
 
 The codebase is tiny, just start at `src/main/index.ts`, and you should immediately understand what is happening. Feel free to reach out if you have questions, though.
 
+### Credits
+
+Thank you to [Blaise Sewell](https://thenounproject.com/blaisetsewell/) on the Noun Project for the [hourglass](https://thenounproject.com/search/?q=hourglass&i=188244) icon
