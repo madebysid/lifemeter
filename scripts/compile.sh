@@ -27,7 +27,7 @@ tsc
 cp -r src/assets build
 
 # Generate the package.json file for the app
-cp app.json build
+cp resources/app.json build
 mv build/app.json build/package.json
 
 # All done

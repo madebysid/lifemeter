@@ -22,7 +22,8 @@
     },
     "directories": {
       "app": "build",
-      "output": "dist"
+      "output": "dist",
+      "buildResources": "resources"
     }
   },
   "devDependencies": {
