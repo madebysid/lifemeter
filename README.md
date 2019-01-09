@@ -1,6 +1,6 @@
 # Lifetime
 
-An app that shows you how much time you have left.
+Time left for life
 
 ![Preview](https://user-images.githubusercontent.com/7689783/50907770-74a92400-1428-11e9-8b8d-9b9c6507e357.png)
 
