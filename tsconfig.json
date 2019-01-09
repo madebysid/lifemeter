@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "dist"
+    "outDir": "build"
   },
   "include": [
     "src/**/*"

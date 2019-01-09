@@ -60,7 +60,7 @@ export const getProgressValue = (type: ProgressType): number => {
 
 export const getProgressIcon = (type: ProgressType): NativeImage => {
   const icon: NativeImage = nativeImage.createFromPath(
-    `./dist/assets/progress-${Math.floor(getProgressValue(type) / 10)}0.png`
+    `./build/assets/progress-${Math.floor(getProgressValue(type) / 10)}0.png`
   );
 
   return icon.resize({ height: 16 });

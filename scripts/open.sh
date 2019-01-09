@@ -1,3 +1,3 @@
 #!/bin/bash
 
-electron dist/index.js
+electron build/index.js
