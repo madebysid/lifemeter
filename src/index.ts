@@ -1,3 +1,3 @@
 import MainProcess from "./main";
 
-new MainProcess();
+MainProcess.init();
