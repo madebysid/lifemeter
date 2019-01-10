@@ -83,7 +83,7 @@ const updateTray = async () => {
 
   setTimeout(() => {
     updateTray();
-  }, 10000);
+  }, 15 * 60 * 1000);
 }
 
 export const createTray = async () => {
