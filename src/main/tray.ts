@@ -96,5 +96,9 @@ export const createTray = async () => {
 
   const icon: NativeImage = getAppIcon();
   tray = new Tray(icon);
+
+  if (isDev()) {
+    tray.setHighlightMode('always');
+  }
   updateTray();
 }
