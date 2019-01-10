@@ -2,7 +2,6 @@ import { nativeImage, NativeImage } from "electron";
 import { DateTime, Interval } from "luxon";
 
 import paths from "./constants/paths";
-import { ProgressType } from "./constants/progressTypes";
 
 const DOB = DateTime.local(1994, 5, 4);
 const DOD = DOB.plus({ years: 79 });
@@ -19,30 +18,34 @@ export const getAppIcon = (): NativeImage => {
   return icon;
 };
 
+export const getProgressLabel = (type: ProgressType): string => {
+  return type.charAt(0).toUpperCase() + type.slice(1);
+}
+
 export const getProgressValue = (type: ProgressType): number => {
   const now: DateTime = DateTime.local();
   let progress: number;
 
   switch (type) {
-    case ProgressType.day:
+    case "day":
       progress = Interval.fromDateTimes(now.startOf("day"), now).length("days");
       break;
-    case ProgressType.week:
+    case "week":
       progress = Interval.fromDateTimes(now.startOf("week"), now).length(
         "weeks"
       );
       break;
-    case ProgressType.month:
+    case "month":
       progress = Interval.fromDateTimes(now.startOf("month"), now).length(
         "months"
       );
       break;
-    case ProgressType.year:
+    case "year":
       progress = Interval.fromDateTimes(now.startOf("year"), now).length(
         "years"
       );
       break;
-    case ProgressType.lifetime:
+    case "lifetime":
       progress =
         Interval.fromDateTimes(DOB, now).length("years") /
         Interval.fromDateTimes(DOB, DOD).length("years");

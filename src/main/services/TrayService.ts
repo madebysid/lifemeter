@@ -5,10 +5,17 @@ import {
   NativeImage
 } from "electron";
 
-import ProgressTypes, { ProgressType } from "../constants/progressTypes";
+import ProgressTypes from "../constants/progressTypes";
 
 import StorageService from "./StorageService";
-import { isDev, getAppIcon, getProgressValue, getProgressIcon } from "../utils";
+import WindowService from "./WindowService";
+import {
+  isDev,
+  getAppIcon,
+  getProgressLabel,
+  getProgressValue,
+  getProgressIcon
+} from "../utils";
 
 class TrayService {
   private tray: Tray;
@@ -20,25 +27,26 @@ class TrayService {
     await StorageService.setItem("active", type);
   }
 
+  handleOpenPreferences = () => {
+    WindowService.open();
+  }
+
   getMenu = (): Menu => {
     // Progress Types
-    const template: Object[] = ProgressTypes.map(time => ({
-      id: String(time.id),
-      label: `${time.label}: ${getProgressValue(time.id)}%`,
+    const template: Object[] = ProgressTypes.map(type => ({
+      id: String(type),
+      label: `${getProgressLabel(type)}: ${getProgressValue(type)}%`,
       type: "radio",
-      checked: this.activeProgressType === time.id,
-      icon: getProgressIcon(time.id),
-      click: () => this.handleChangeActiveProgressType(time.id)
+      checked: this.activeProgressType === type,
+      icon: getProgressIcon(type),
+      click: () => this.handleChangeActiveProgressType(type)
     }));
 
     // Preferences
     template.push({ type: "separator" });
     template.push({
       label: "Preferences",
-      click: () => {
-        app.relaunch();
-        app.exit(0);
-      }
+      click: () => this.handleOpenPreferences()
     });
 
     // Quit
@@ -68,12 +76,13 @@ class TrayService {
     this.tray = new Tray(icon);
 
     const savedActiveProgressType = await StorageService.getItem("active");
-    this.activeProgressType = savedActiveProgressType || ProgressType.day;
+    this.activeProgressType = savedActiveProgressType || "day";
 
     if (isDev()) {
       this.tray.setHighlightMode("always");
     }
 
+    WindowService.open();
     this.update();
   }
 
