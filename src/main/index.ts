@@ -1,7 +1,7 @@
 import { app } from "electron";
 
 import { isDev } from "./utils";
-import { createTray } from "./tray";
+import TrayService from "./services/TrayService";
 
 export default class MainProcess {
   constructor() {
@@ -13,6 +13,6 @@ export default class MainProcess {
   }
 
   onAppReady = () => {
-    createTray();
+    TrayService.create();
   }
 }

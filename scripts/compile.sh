@@ -31,5 +31,4 @@ cp resources/app.json build
 mv build/app.json build/package.json
 
 # All done
-clear
 echo "✔ Finished"
