@@ -49,6 +49,13 @@ export default {
     ),
   },
 
+  renderer: {
+    root: `file://${path.resolve(
+      __dirname,
+      "../../assets/index.html"
+    )}`
+  },
+
   data: {
     root: userDataPath,
     preferences: `${userDataPath}/preferences.json`

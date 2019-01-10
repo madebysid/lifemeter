@@ -1,0 +1,17 @@
+@font-face {
+  src: url("./fonts/MajorMonoDisplay-Regular.ttf");
+  font-family: "Major";
+}
+
+body {
+  height: 100vh;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  height: 100%;
+  font-family: Major;
+}
