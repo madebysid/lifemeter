@@ -62,7 +62,10 @@ const getContextMenu = (activeItem: ProgressType): Menu => {
 
   if (isDev()) {
     template.push({ type: "separator" });
-    template.push({ label: "Reload", click: () => app.relaunch() });
+    template.push({ label: "Reload", click: () => {
+      app.relaunch();
+      app.exit(0);
+    } });
   }
 
   return Menu.buildFromTemplate(template);
