@@ -3,9 +3,6 @@ import { DateTime, Interval, Duration } from "luxon";
 
 import paths from "./constants/paths";
 
-const DOB = DateTime.local(1994, 5, 4);
-const DOD = DOB.plus({ years: 79 });
-
 export const isDev = (): boolean => {
   return !process.mainModule.filename.includes("app.asar");
 };
@@ -48,6 +45,8 @@ export const getProgressValue = (type: ProgressType, preferences: Preferences): 
       progress -= offset.as("years");
       break;
     case "lifetime":
+      const DOB = DateTime.local(preferences.dobYear, preferences.dobMonth, preferences.dobDate);
+      const DOD = DOB.plus({ years: 80 });
       progress =
         Interval.fromDateTimes(DOB, now).length("years") /
         Interval.fromDateTimes(DOB, DOD).length("years");
