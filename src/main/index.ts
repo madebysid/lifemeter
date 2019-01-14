@@ -1,4 +1,4 @@
-import { app, ipcMain } from "electron";
+import { app, ipcMain, BrowserWindow } from "electron";
 
 import { isDev } from "./utils";
 import TrayService from "./services/TrayService";
@@ -21,17 +21,18 @@ class MainProcess {
 
   onMessage = async (event: Event, message: IPCMessage) => {
     const { type, payload } = message;
+    let window: BrowserWindow = WindowService.getWindow();
     switch (type) {
       case "preferences-set":
-        await StorageService.setItem("dayResetHour", payload.dayResetHour);
-        await StorageService.setItem("dayResetMinutes", payload.dayResetMinutes);
-        await StorageService.setItem("dobDate", payload.dobDate);
-        await StorageService.setItem("dobMonth", payload.dobMonth);
-        await StorageService.setItem("dobYear", payload.dobYear);
+        await StorageService.set(payload);
+
+        window.webContents.send("channel", {
+          type: "preferences-set-response",
+          payload: payload
+        });
         break;
       case "preferences-get":
         const preferences = await StorageService.get();
-        const window = WindowService.getWindow();
 
         window.webContents.send("channel", {
           type: "preferences-get-response",

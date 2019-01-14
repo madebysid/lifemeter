@@ -11,7 +11,7 @@ const DOB_YEAR_INPUT_ID = "#dob__year";
 const SAVE_BUTTON_ID = "#save";
 
 (async () => {
-  const preferences: Preferences = await getPreferences();
+  let preferences: Preferences = await getPreferences();
   let {
     active,
     dayResetHour,
@@ -63,8 +63,8 @@ const SAVE_BUTTON_ID = "#save";
     updateDirty();
   };
 
-  const handleSave = () => {
-    setPreferences({
+  const handleSave = async () => {
+    preferences = await setPreferences({
       active,
       dayResetHour,
       dayResetMinutes,
@@ -72,6 +72,8 @@ const SAVE_BUTTON_ID = "#save";
       dobMonth,
       dobYear
     });
+
+    updateDirty();
   }
 
   const getInputValue = (e: KeyboardEvent) => {

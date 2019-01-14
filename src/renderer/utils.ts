@@ -4,19 +4,29 @@ export const isDirty = (source: any, modified: any) => {
   return JSON.stringify(source) !== JSON.stringify(modified); 
 }
 
-export const setPreferences = (preferences: Preferences) => {
-  const message: IPCMessage = {
-    type: "preferences-set",
-    payload: preferences
-  };
+export const setPreferences = (preferences: Preferences): Promise<Preferences> => {
+  return new Promise(resolve => {
+    ipcRenderer.once("channel", (event: Event, message: IPCMessage) => {
+      if (message.type === "preferences-set-response") {
+        return resolve(message.payload);
+      }
+    });
 
-  ipcRenderer.send("channel", message);
+    const message: IPCMessage = {
+      type: "preferences-set",
+      payload: preferences
+    };
+
+    ipcRenderer.send("channel", message);
+  });
 }
 
 export const getPreferences = async (): Promise<Preferences> => {
   return new Promise(resolve => {
-    ipcRenderer.on("channel", (event: Event, message: IPCMessage) => {
-      return resolve(message.payload);
+    ipcRenderer.once("channel", (event: Event, message: IPCMessage) => {
+      if (message.type === "preferences-get-response") {
+        return resolve(message.payload);
+      }
     });
 
     const message: IPCMessage = { type: "preferences-get" }

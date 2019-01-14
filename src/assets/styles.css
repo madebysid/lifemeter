@@ -24,6 +24,10 @@ div {
   user-select: none;
 }
 
+button {
+  outline: none;
+}
+
 #container {
   display: flex;
   flex-direction: column;
