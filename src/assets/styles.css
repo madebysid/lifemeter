@@ -20,6 +20,10 @@ div {
   box-sizing: border-box;
 }
 
+*:not(input) {
+  user-select: none;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -85,13 +89,13 @@ div {
   max-width: 40px;
 }
 
-.time-picker {
+#time-picker {
   display: flex;
   align-items: flex-end;
 }
 
-.time-prev,
-.time-next {
+#time-prev,
+#time-next {
   width: 15px;
   margin: 0 30px;
   cursor: pointer;

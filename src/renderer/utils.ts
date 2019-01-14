@@ -1,8 +1,6 @@
 import { ipcRenderer } from "electron";
 
 export const isDirty = (source: any, modified: any) => {
-  console.log(source, modified)
-  console.log(JSON.stringify(source), JSON.stringify(modified));
   return JSON.stringify(source) !== JSON.stringify(modified); 
 }
 

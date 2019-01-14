@@ -1,6 +1,6 @@
 class DateService {
   formatTime (hours: number, minutes: number): string {
-    const hoursStr: string = String(hours < 12 ? hours : hours - 12);
+    const hoursStr: string = String(hours <= 12 ? hours : hours - 12);
     const minutesStr: string = String(minutes).padStart(2, "0");
     return String(`${hoursStr}:${minutesStr} ${hours < 12 ? "AM" : "PM"}`);
   }
