@@ -3,9 +3,11 @@
 Time left for life
 
 Tray
+
 ![Preview](https://user-images.githubusercontent.com/7689783/50907770-74a92400-1428-11e9-8b8d-9b9c6507e357.png)
 
 Preferences
+
 ![Preferences](https://user-images.githubusercontent.com/7689783/51146879-6dcf4680-1858-11e9-8245-693e5546963f.png)
 
 I built this app for myself. I don't plan on distributing it, but if you want to use it, reach out to `me@madebysid.com`, and I'll send it to you.
