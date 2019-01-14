@@ -7,13 +7,20 @@ const DOB_YEAR_INPUT_ID = "#dob__year";
 const SAVE_BUTTON_ID = "#save";
 
 (async () => {
-  const getPreferences = async (): Preferences => {
-    
+  const getPreferences = async (): Promise<Preferences> => {
+    return new Promise((resolve, reject) => {
+      ipcRenderer.on("channel", (event: Event, message: IPCMessage) => {
+        return resolve(message.payload);
+      });
+
+      const message: IPCMessage = { type: "preferences-get" }
+      ipcRenderer.send("channel", message);
+    });
   };
 
   const preferences: Preferences = await getPreferences();
-  let hour: number = 9;
-  let dob: Date = new Date();
+  let hour: number = preferences.hour;
+  let dob: Date = new Date(preferences.dobYear, preferences.dobMonth, preferences.dobDate);
 
   const handleChangeTime = (e: KeyboardEvent) => {
     const { value } = e.target as HTMLInputElement;

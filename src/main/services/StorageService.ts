@@ -14,7 +14,10 @@ class StorageService {
         let content: Preferences;
 
         try {
-          content = JSON.parse(data);
+          content = {
+            ...defaults,
+            ...JSON.parse(data)
+          }
         } catch (e) {
           content = defaults;
         } finally {

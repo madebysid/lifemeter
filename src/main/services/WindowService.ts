@@ -15,7 +15,7 @@ class WindowService {
     this.window.loadURL(paths.renderer.root);
   }
 
-  getWindow = () => {
+  getWindow = (): BrowserWindow => {
     return this.window;
   }
 }

@@ -3,6 +3,7 @@ import { app, ipcMain } from "electron";
 import { isDev } from "./utils";
 import TrayService from "./services/TrayService";
 import StorageService from "./services/StorageService";
+import WindowService from "./services/WindowService";
 
 class MainProcess {
   init() {
@@ -30,6 +31,12 @@ class MainProcess {
         break;
       case "preferences-get":
         const preferences = await StorageService.get();
+        const window = WindowService.getWindow();
+
+        window.webContents.send("channel", {
+          type: "preferences-get-response",
+          payload: preferences
+        });
         break;
       default:
         break;
