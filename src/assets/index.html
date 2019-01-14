@@ -6,22 +6,73 @@
 </head>
 <body>
   <div id="container">
-    Lifetime <br />
-    Day start
-    <input id="time" />
-    
-    <br />
-    <br />
+    <div class="header">
+      Lifetime
+    </div>
 
-    DOB
-    <input id="dob__day" />
-    <input id="dob__month" />
-    <input id="dob__year" />
+    <div class="content">
+      <div class="item">
+        <span class="title">
+          When were you born?
+        </span>
+        <span class="subtitle">
+          This helps us accurately predict your lifetime
+        </span>
+        <div class="control">
+          <input id="dob__day" class="input input-sm" />
+          <input id="dob__month" class="input input-sm" />
+          <input id="dob__year" class="input input-lg" />
+        </div>
+      </div>
 
-    <br />
-    <br />
+      <div class="item">
+        <span class="title">
+          When do you usually wake up?
+        </span>
+        <span class="subtitle">
+          This is the time Lifetime will reset your Day clock
+        </span>
+        <div class="control">
+          <img class="time-prev" src="images/prev.png" />
+          <div class="time-picker">
+            <div class="time-bar time-bar-lg"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-lg"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-lg"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-lg"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-sm"></div>
+            <div class="time-bar time-bar-lg"></div>
+          </div>
+          <img class="time-next" src="images/next.png" />
+        </div>
+        <img class="time-marker" src="images/marker.png" />
+        <span id="time"></span>
+      </div>
+    </div>
 
-    <button id="save">Save</button>
+    <div class="footer">
+      <button id="save" class="button">
+        Save
+      </button>
+    </div>
   </div>
 
   <script>
