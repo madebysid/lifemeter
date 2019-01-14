@@ -5,7 +5,7 @@ spin()
   spinner="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
   while :
   do
-    for i in `seq 0 7`
+    for i in `seq 0 9`
     do
       echo -en "\010\010\010\010\010\010\010\010\010"
       echo -n "${spinner:$i:1} Working"
@@ -31,5 +31,4 @@ cp resources/app.json build
 mv build/app.json build/package.json
 
 # All done
-clear
 echo "✔ Finished"

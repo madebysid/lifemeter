@@ -1,0 +1,166 @@
+@font-face {
+  src: url("./fonts/SpaceMono-Regular.ttf");
+  font-family: "Space Mono Regular";
+}
+
+@font-face {
+  src: url("./fonts/SpaceMono-Bold.ttf");
+  font-family: "Space Mono Bold";
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-app-region: drag;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+*:not(input) {
+  user-select: none;
+}
+
+button {
+  outline: none;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  height: 100%;
+  font-family: "Space Mono Regular";
+  padding: 30px;
+}
+
+.logo {
+  height: 28px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: 20px 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 12px;
+  opacity: 0.4;
+  margin-bottom: 30px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  font-size: 16px;
+  font-family: "Space Mono Bold";
+  border-width: 0;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 0 10px;
+}
+
+.input-sm {
+  max-width: 22px;
+}
+
+.input-lg {
+  max-width: 40px;
+}
+
+#time-picker {
+  display: flex;
+  align-items: flex-end;
+}
+
+#time-prev,
+#time-next {
+  width: 15px;
+  margin: 0 30px;
+  cursor: pointer;
+}
+
+.time-bar {
+  background-color: #FFFFFF;
+  width: 3px;
+  border-radius: 3px;
+  margin: 0 7px;
+}
+
+.time-bar:nth-child(4),
+.time-bar:nth-last-child(4) {
+  opacity: 0.8;
+}
+
+.time-bar:nth-child(3),
+.time-bar:nth-last-child(3) {
+  opacity: 0.6;
+}
+
+.time-bar:nth-child(2),
+.time-bar:nth-last-child(2) {
+  opacity: 0.4;
+}
+
+.time-bar:nth-child(1),
+.time-bar:nth-last-child(1) {
+  opacity: 0.2;
+}
+
+.time-bar-sm {
+  height: 16px;
+}
+
+.time-bar-lg {
+  height: 32px;
+}
+
+.time-marker {
+  height: 12px;
+  margin: 20px;
+}
+
+.footer {
+  display: flex;
+}
+
+.button {
+  height: 35px;
+  background: #FFFFFF;
+  font-size: 14px;
+  font-family: "Space Mono Regular";
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 20px;
+  cursor: pointer;
+}
+
+.button.disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
