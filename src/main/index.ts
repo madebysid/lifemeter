@@ -24,6 +24,12 @@ class MainProcess {
     switch (type) {
       case "preferences-set":
         await StorageService.setItem("hour", payload.hour);
+        await StorageService.setItem("dobDate", payload.dobDate);
+        await StorageService.setItem("dobMonth", payload.dobMonth);
+        await StorageService.setItem("dobYear", payload.dobYear);
+        break;
+      case "preferences-get":
+        const preferences = await StorageService.get();
         break;
       default:
         break;
