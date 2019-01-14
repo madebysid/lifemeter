@@ -1,49 +1,54 @@
 import { readFile, writeFile } from "fs";
 
 import paths from "../constants/paths";
+import defaults from "../constants/defaults";
 
 class StorageService {
-  constructor () {
+  constructor() {
     console.log(`[StorageService] Preferences path: ${paths.data.preferences}`);
   }
 
-  __getContent = (): Promise<object> => {
+  get = (): Promise<Preferences> => {
     return new Promise(resolve => {
       readFile(paths.data.preferences, { encoding: "utf8" }, (err, data) => {
-        let content: object;
+        let content: Preferences;
 
         try {
           content = JSON.parse(data);
         } catch (e) {
-          content = {};
+          content = defaults;
         } finally {
           return resolve(content);
         }
       });
     });
-  }
+  };
 
-  setItem = async (key: string, value: any): Promise<any> => {
-    let content: object = await this.__getContent();
-    content[key] = value;
-
+  set = (preferences: Preferences) => {
     return new Promise((resolve, reject) => {
       return writeFile(
         paths.data.preferences,
-        JSON.stringify(content),
+        JSON.stringify(preferences),
         err => {
           if (err) {
             return reject(err);
           }
 
-          return resolve(value);
+          return resolve();
         }
       );
-    })
+    });
   }
 
+  setItem = async (key: string, value: any): Promise<any> => {
+    let content: Preferences = await this.get();
+    content[key] = value;
+
+    return await this.set(content);
+  };
+
   getItem = async (key: string): Promise<any> => {
-    let content: object = await this.__getContent();
+    const content: Preferences = await this.get();
     return content[key];
   };
 };
