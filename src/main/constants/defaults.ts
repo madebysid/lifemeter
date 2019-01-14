@@ -1,6 +1,7 @@
 const preferences: Preferences = {
   active: "day",
-  hour: 9,
+  dayResetHour: 9,
+  dayResetMinutes: 0,
   dobDate: 4,
   dobMonth: 5,
   dobYear: 1994

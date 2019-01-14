@@ -7,7 +7,8 @@ declare type ProgressType = "day" | "week" | "month" | "year" | "lifetime";
 
 declare type Preferences = {
   active: ProgressType
-  hour: number
+  dayResetHour: number
+  dayResetMinutes: number
   dobDate: number
   dobMonth: number
   dobYear: number

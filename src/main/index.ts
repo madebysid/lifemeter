@@ -21,10 +21,10 @@ class MainProcess {
 
   onMessage = async (event: Event, message: IPCMessage) => {
     const { type, payload } = message;
-    console.log("got message", message);
     switch (type) {
       case "preferences-set":
-        await StorageService.setItem("hour", payload.hour);
+        await StorageService.setItem("dayResetHour", payload.dayResetHour);
+        await StorageService.setItem("dayResetMinutes", payload.dayResetMinutes);
         await StorageService.setItem("dobDate", payload.dobDate);
         await StorageService.setItem("dobMonth", payload.dobMonth);
         await StorageService.setItem("dobYear", payload.dobYear);

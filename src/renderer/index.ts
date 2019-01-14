@@ -19,12 +19,13 @@ const SAVE_BUTTON_ID = "#save";
   };
 
   const preferences: Preferences = await getPreferences();
-  let hour: number = preferences.hour;
+  let dayResetHour: number = preferences.dayResetHour;
+  let dayResetMinutes: number = preferences.dayResetMinutes;
   let dob: Date = new Date(preferences.dobYear, preferences.dobMonth, preferences.dobDate);
 
   const handleChangeTime = (e: KeyboardEvent) => {
     const { value } = e.target as HTMLInputElement;
-    hour = parseInt(value);
+    dayResetHour = parseInt(value);
   }
 
   const handleChangeDOB = (type: "day" | "month" | "year", e: KeyboardEvent) => {
@@ -48,7 +49,8 @@ const SAVE_BUTTON_ID = "#save";
     const message: IPCMessage = {
       type: "preferences-set",
       payload: {
-        hour,
+        dayResetHour,
+        dayResetMinutes,
         dobDate: dob.getDate(),
         dobMonth: dob.getMonth(),
         dobYear: dob.getFullYear(),
@@ -73,7 +75,7 @@ const SAVE_BUTTON_ID = "#save";
   saveButton.addEventListener("click", handleSave);
 
   // Populate initial values
-  timeDisplay.innerText = String(`${hour}:00 AM`);
+  timeDisplay.innerText = String(`${dayResetHour}:${String(dayResetMinutes).padStart(2, "0")} ${dayResetHour >= 12 ? 'PM' : 'AM'}`);
   dobDayInput.value = String(dob.getDate());
   dobMonthInput.value = String(dob.getMonth() + 1);
   dobYearInput.value = String(dob.getFullYear());
