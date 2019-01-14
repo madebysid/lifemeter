@@ -31,9 +31,8 @@ div {
   padding: 30px;
 }
 
-.header {
-  font-size: 18px;
-  font-family: "Space Mono Bold";
+.logo {
+  height: 28px;
 }
 
 .content {
@@ -151,4 +150,9 @@ div {
   border-radius: 5px;
   padding: 7px 20px;
   cursor: pointer;
+}
+
+.button.disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
