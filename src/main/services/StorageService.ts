@@ -3,7 +3,11 @@ import { readFile, writeFile } from "fs";
 import paths from "../constants/paths";
 
 class StorageService {
-  __getContent = async (): Promise<object> => {
+  constructor () {
+    console.log(`[StorageService] Preferences path: ${paths.data.preferences}`);
+  }
+
+  __getContent = (): Promise<object> => {
     return new Promise(resolve => {
       readFile(paths.data.preferences, { encoding: "utf8" }, (err, data) => {
         let content: object;

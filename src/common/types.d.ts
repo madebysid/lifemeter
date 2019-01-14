@@ -1,6 +1,6 @@
 declare type IPCMessage = {
   type: string,
-  payload: object
+  payload: any
 }
 
 declare type ProgressType = "day" | "week" | "month" | "year" | "lifetime";
