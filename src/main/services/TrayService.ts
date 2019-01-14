@@ -20,6 +20,7 @@ import {
 class TrayService {
   private tray: Tray;
   private activeProgressType: ProgressType
+  private timeout: NodeJS.Timeout;
 
   handleChangeActiveProgressType = async (type: ProgressType) => {
     this.activeProgressType = type;
@@ -31,14 +32,15 @@ class TrayService {
     WindowService.open();
   }
 
-  getMenu = (): Menu => {
+  getMenu = async (): Promise<Menu> => {
+    const preferences: Preferences = await StorageService.get();
     // Progress Types
     const template: Object[] = ProgressTypes.map(type => ({
       id: String(type),
-      label: `${getProgressLabel(type)}: ${getProgressValue(type)}%`,
+      label: `${getProgressLabel(type)}: ${getProgressValue(type, preferences)}%`,
       type: "radio",
       checked: this.activeProgressType === type,
-      icon: getProgressIcon(type),
+      icon: getProgressIcon(type, preferences),
       click: () => this.handleChangeActiveProgressType(type)
     }));
 
@@ -85,14 +87,17 @@ class TrayService {
     this.update();
   }
 
-  update = () => {
-    const menu = this.getMenu();
+  update = async () => {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+    const menu = await this.getMenu();
     const title: string = menu.getMenuItemById(String(this.activeProgressType)).label;
 
     this.tray.setTitle(title);
     this.tray.setContextMenu(menu);
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.update();
     }, 15 * 60 * 1000);
   }

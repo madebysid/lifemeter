@@ -31,6 +31,7 @@ class MainProcess {
           type: "preferences-set-response",
           payload: payload
         });
+        TrayService.update();
         break;
       case "preferences-get":
         const preferences = await StorageService.get();
