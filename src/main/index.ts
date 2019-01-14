@@ -10,6 +10,7 @@ class MainProcess {
     if (!isDev()) {
       app.setLoginItemSettings({ openAtLogin: true });
     }
+    app.on('window-all-closed', (e: Event) => e.preventDefault())
 
     app.on("ready", this.onAppReady);
     ipcMain.on("channel", this.onMessage);

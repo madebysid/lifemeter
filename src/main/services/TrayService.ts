@@ -82,7 +82,6 @@ class TrayService {
       this.tray.setHighlightMode("always");
     }
 
-    WindowService.open();
     this.update();
   }
 
