@@ -1,4 +1,4 @@
-import { app, ipcMain, BrowserWindow } from "electron";
+import { app, powerSaveBlocker, ipcMain, BrowserWindow } from "electron";
 
 import { isDev } from "./utils";
 import TrayService from "./services/TrayService";
@@ -11,6 +11,8 @@ class MainProcess {
       app.setLoginItemSettings({ openAtLogin: true });
     }
     app.on('window-all-closed', (e: Event) => e.preventDefault())
+
+    powerSaveBlocker.start('prevent-app-suspension');
 
     app.on("ready", this.onAppReady);
     ipcMain.on("channel", this.onMessage);
